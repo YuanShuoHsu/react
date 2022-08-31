@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3_使用jsx創建虛擬DOM</title>
+    <!-- 創建虛擬 DOM 太繁瑣，jsx 可以讓編碼人員更加簡單創建虛擬 DOM -->
+    <!--  jsx 是原始 js 創建虛擬 DOM 的語法糖 -->
+</head>
+
+<body>
+    <!-- 準備好一個"容器" -->
+    <div id="test"></div>
+
+    <!-- 引入 react 核心庫 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入 react-dom，用於支持 react 操作 DOM -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入 babel，用於將 jsx 轉為 js -->
+    <!-- <script type="text/javascript" src="../js/babel.min.js"></script> -->
+
+    <!-- <script type="text/babel"> -->
+    <script type="text/javascript">
+        // 創建虛擬DOM
+        // const VDOM = React.createElement("h1", { id: "title" }, "Hello, React")
+        const VDOM = React.createElement("h1", { id: "title" }, React.createElement("span", {}, "Hello React"));
+        // 渲染虛擬DOM到頁面
+        ReactDOM.render(VDOM, document.getElementById("test"))
+    </script>
+</body>
+
+</html>
