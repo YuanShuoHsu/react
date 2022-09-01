@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9_函數式組件</title>
+</head>
+
+<body>
+    <!-- 準備好一個"容器" -->
+    <div id="test"></div>
+
+    <!-- 引入 react 核心庫 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入 react-dom，用於支持 react 操作 DOM -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入 babel，用於將 jsx 轉為 js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        // 創建函數式組件
+        function MyComponent() {
+            console.log(this); // 此處的 this 是 undefined，因為 babel 編譯後開啟了嚴格模式
+            return <h2>我是函數定義的組件(適用於【簡單組件】的定義)</h2>
+        }
+        // 渲染組件到頁面
+        ReactDOM.render(<MyComponent />, document.getElementById("test"))
+        /*
+            執行了 ReactDOM.render(<MyComponent/>......之後，發生了什麼？
+            1. React 解析組件標籤，找到了 MyComponent 組件
+            2. 發現組件是使用函數定義的，隨後調用該函數，將返回的虛擬 DOM 轉為真實 DOM，隨後呈現在頁面中
+        */
+    </script>
+</body>
+
+</html>
