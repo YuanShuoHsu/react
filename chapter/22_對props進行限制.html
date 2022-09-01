@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>20_props基本使用</title>
+    <title>22_對props進行限制</title>
 </head>
 
 <body>
@@ -20,6 +20,8 @@
     <script type="text/javascript" src="../js/react-dom.development.js"></script>
     <!-- 引入 babel，用於將 jsx 轉為 js -->
     <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!-- 引入 prop-types，用於對組件標籤屬性進行限制 -->
+    <script type="text/javascript" src="../js/prop-types.js"></script>
 
     <script type="text/babel">
         // 創建組件
@@ -35,6 +37,10 @@
                     </ul >
                 )
             }
+        }
+
+        Person.propTypes = {
+            name: PropTypes.string,
         }
         // 渲染組件到頁面
         ReactDOM.render(<Person name="jerry" sex="男" age={19} />, document.getElementById("test1"))
