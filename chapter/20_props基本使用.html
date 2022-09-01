@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20_props基本使用</title>
+</head>
+
+<body>
+    <!-- 準備好一個"容器" -->
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+
+    <!-- 引入 react 核心庫 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入 react-dom，用於支持 react 操作 DOM -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入 babel，用於將 jsx 轉為 js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        // 創建組件
+        class Person extends React.Component {
+            render() {
+                console.log(this);
+                const { name, sex, age } = this.props
+                return (
+                    < ul >
+                        <li>姓名：{name}</li>
+                        <li>性別：{sex}</li>
+                        <li>年齡：{age}</li>
+                    </ul >
+                )
+            }
+        }
+        // 渲染組件到頁面
+        ReactDOM.render(<Person name="jerry" sex="男" age="19" />, document.getElementById("test1"))
+        ReactDOM.render(<Person name="tom" sex="女" age="18" />, document.getElementById("test2"))
+        ReactDOM.render(<Person name="老劉" sex="女" age="30" />, document.getElementById("test3"))
+    </script>
+</body>
+
+</html>
