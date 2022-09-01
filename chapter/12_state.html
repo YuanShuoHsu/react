@@ -28,6 +28,8 @@
                 this.state = {
                     isHot: true,
                 }
+                // 解決 changeWeather 中 this 指向問題
+                this.changeWeather = this.changeWeather.bind(this);
             }
             render() {
                 // console.log(this);
