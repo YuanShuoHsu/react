@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5_jsx語法規則</title>
+    <style>
+        .title {
+            background-color: orange;
+            width: 200px;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,15 +31,29 @@
 
         // 創建虛擬 DOM
         const VDOM = (
-            <h2 id={myId.toLowerCase()}>
-                <span>{myData.toLowerCase()}</span>
-            </h2>
+            <div>
+                <h2 className="title" id={myId.toLowerCase()}>
+                    <span style={{ color: "white", fontSize: "28px" }}>{myData.toLowerCase()}</span>
+                </h2>
+                <h2 className="title" id={myId.toUpperCase()}>
+                    <span style={{ color: "white", fontSize: "28px" }}>{myData.toLowerCase()}</span>
+                </h2>
+                <input type="text"/>
+            </div>
         )
         // 渲染虛擬 DOM 到頁面
         ReactDOM.render(VDOM, document.getElementById("test"))
         /*
             jsx 語法規則：
             1. 定義虛擬 DOM 時，不要寫引號
+            2. 標籤中混入 js 表達式要用 {}
+            3. 樣式的類名指定不要用 class，要用 className
+            4. 內聯樣式，要用 style={{ key: value }} 的形式去寫
+            5. 只有一個根標籤
+            6. 標籤必須閉合
+            7. 標籤首字母
+                (1). 若小寫字母開頭，則將改標籤轉為 html 中同名元素，若 html 中無該標籤對應的同名元素，則報錯
+                (2). 若大寫字母開頭，react就去渲染對應的組件，若組件沒有定義，則報錯
         */
     </script>
 </body>
