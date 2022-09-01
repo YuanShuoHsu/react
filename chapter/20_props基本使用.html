@@ -39,7 +39,10 @@
         // 渲染組件到頁面
         ReactDOM.render(<Person name="jerry" sex="男" age="19" />, document.getElementById("test1"))
         ReactDOM.render(<Person name="tom" sex="女" age="18" />, document.getElementById("test2"))
-        ReactDOM.render(<Person name="老劉" sex="女" age="30" />, document.getElementById("test3"))
+
+        const p = { name: "老劉", age: 18, sex: "女" }
+        // ReactDOM.render(<Person name="老劉" sex="女" age="30" />, document.getElementById("test3"))
+        ReactDOM.render(<Person {...p} />, document.getElementById("test3"))
     </script>
 </body>
 
