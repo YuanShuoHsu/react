@@ -33,11 +33,20 @@
                 // console.log(this);
                 // 讀取狀態
                 const { isHot } = this.state
-                return <h1 onClick={demo}>今天天氣很{isHot ? '炎熱' : '涼爽'}</h1>
+                return <h1 onClick={this.changeWeather}>今天天氣很{isHot ? '炎熱' : '涼爽'}</h1>
+            }
+            changeWeather() {
+                // changeWeather 放在哪裡？ -- Weather 的原型對象上，供實例使用
+                // 由於 changeWeather 是作為 onClick 的回調，所以不是通過實例調用的，是直接調用
+                // 類中的方法默認開啟了局部的嚴格模式，所以 changeWeather 中的 this 為 undefined
+                console.log(this);
             }
         }
         // 渲染組件到頁面
         ReactDOM.render(<Weather />, document.getElementById("test"));
+
+        // const w = new Weather();
+        // w.changeWeather();
 
         // const title = document.getElementById("title")
         // title.addEventListener("click", () => {
@@ -47,10 +56,6 @@
         // title.onclick = () => {
         //     console.log("標題被點擊了");
         // }
-
-        function demo() {
-            console.log("標題被點擊了")
-        }
     </script>
 </body>
 
