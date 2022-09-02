@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23_props的簡寫方式</title>
+</head>
+
+<body>
+    <!-- 準備好一個"容器" -->
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+
+    <!-- 引入 react 核心庫 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入 react-dom，用於支持 react 操作 DOM -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入 babel，用於將 jsx 轉為 js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!-- 引入 prop-types，用於對組件標籤屬性進行限制 -->
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+
+    <script type="text/babel">
+        // 創建組件
+        class Person extends React.Component {
+            // 對標籤屬性進行類型、必要性的限制
+            static propTypes = {
+                name: PropTypes.string.isRequired, // 限制 name 必傳，且為字符串
+                sex: PropTypes.string, // 限制 sex 為字符串
+                age: PropTypes.number, // 限制 age 為數值
+                speak: PropTypes.func, // 限制 speak 為函數
+            }
+            // 指定默認標籤屬性值
+            static defaultProps = {
+                sex: "男", // sex 默認值為男
+                age: 18, // age 默認值為18
+            }
+
+            render() {
+                // console.log(this);
+                const { name, sex, age } = this.props
+                // props 是只讀的
+                // this.props.name = "jack" // 此行代碼會報錯，因為 props 是只讀的
+                return (
+                    < ul >
+                        <li>姓名：{name}</li>
+                        <li>性別：{sex}</li>
+                        <li>年齡：{age + 1}</li>
+                    </ul >
+                )
+            }
+        }
+
+        // 渲染組件到頁面
+        ReactDOM.render(<Person name="jerry" speak={speak} />, document.getElementById("test1"))
+        ReactDOM.render(<Person name="tom" sex="女" age={18} />, document.getElementById("test2"))
+
+        const p = { name: "老劉", sex: "女", age: 18 }
+        // console.log("@", ...p);
+        // ReactDOM.render(<Person name="老劉" sex="女" age="30" />, document.getElementById("test3"))
+        ReactDOM.render(<Person {...p} />, document.getElementById("test3"))
+
+        function speak() {
+            console.log("我說話了");
+        }
+    </script>
+</body>
+
+</html>
