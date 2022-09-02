@@ -11,8 +11,6 @@
 <body>
     <!-- 準備好一個"容器" -->
     <div id="test1"></div>
-    <div id="test2"></div>
-    <div id="test3"></div>
 
     <!-- 引入 react 核心庫 -->
     <script type="text/javascript" src="../js/react.development.js"></script>
@@ -26,12 +24,18 @@
     <script type="text/babel">
         // 創建組件
         class Person extends React.Component {
+            constructor(props) {
+                // 構造器是否接收 props，是否傳遞給 super，取決於：是否希望在構造器中通過 this 訪問 props
+                // console.log(props);
+                super(props);
+                console.log("constructor", this.props);
+            }
+
             // 對標籤屬性進行類型、必要性的限制
             static propTypes = {
                 name: PropTypes.string.isRequired, // 限制 name 必傳，且為字符串
                 sex: PropTypes.string, // 限制 sex 為字符串
                 age: PropTypes.number, // 限制 age 為數值
-                speak: PropTypes.func, // 限制 speak 為函數
             }
             // 指定默認標籤屬性值
             static defaultProps = {
@@ -55,17 +59,7 @@
         }
 
         // 渲染組件到頁面
-        ReactDOM.render(<Person name="jerry" speak={speak} />, document.getElementById("test1"))
-        ReactDOM.render(<Person name="tom" sex="女" age={18} />, document.getElementById("test2"))
-
-        const p = { name: "老劉", sex: "女", age: 18 }
-        // console.log("@", ...p);
-        // ReactDOM.render(<Person name="老劉" sex="女" age="30" />, document.getElementById("test3"))
-        ReactDOM.render(<Person {...p} />, document.getElementById("test3"))
-
-        function speak() {
-            console.log("我說話了");
-        }
+        ReactDOM.render(<Person name="jerry" />, document.getElementById("test1"))
     </script>
 </body>
 
