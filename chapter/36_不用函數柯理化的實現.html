@@ -20,14 +20,6 @@
     <script type="text/javascript" src="../js/babel.min.js"></script>
 
     <script type="text/babel">
-        /*
-            高階函數：如果一個函數符合下面 2 個規範中的任何一個，那該函數就是高階函數
-                1. 若 A 函數，接收的參數是一個函數，那麼 A 就可以稱之為高階函數
-                2. 若 A 函數，調用的返回值依然是一個函數，那麼 A 就可以稱之為高階函數
-                常見的高階函數有：Promise、setTimout、arr.map()等等
-
-            函數的柯里化：通過函數調用繼續返回函數的方式，實現多次接收參數最後統一處理的函數編碼形式
-        */
         // 創建組件
         class Login extends React.Component {
             // 初始化狀態
@@ -36,10 +28,8 @@
                 password: "", // 密碼
             }
             // 保存表單數據到狀態中
-            saveFormData = (dataType) => {
-                return (event) => {
-                    this.setState({ [dataType]: event.target.value })
-                }
+            saveFormData = (dataType, event) => {
+                this.setState({ [dataType]: event.target.value })
             }
             // 表單提交的回調
             handleSubmit = (evnet) => {
@@ -50,8 +40,8 @@
             render() {
                 return (
                     <form onSubmit={this.handleSubmit}>
-                        用戶名：<input onChange={this.saveFormData("username")} type="text" name="username" />
-                        密碼：<input onChange={this.saveFormData("password")} type="password" name="password" />
+                        用戶名：<input onChange={event => this.saveFormData("username", event)} type="text" name="username" />
+                        密碼：<input onChange={event => this.saveFormData("password", event)} type="password" name="password" />
                         <button>登入</button>
                     </form>
                 )
