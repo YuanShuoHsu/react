@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10_類的基本知識</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        /*
+            總結：
+            1. 類中的構造器不是必須寫的，要對實例進行一些初始化的操作，如添加指定屬性時才寫
+            2. 如果 A 類繼承了 B 類，且 A 類中寫了構造器，那麼 A 類 構造器中的 super 是必須要調用的
+            3. 類中所定義的方法，都是放在了類的原型對象上，供實例去使用
+        */
+        // 創建一個 Person 類
+        class Person {
+            // 構造器方法
+            constructor(name, age) {
+                // 構造器中的 this 是誰？ -- 類的實例對象
+                this.name = name;
+                this.age = age;
+            }
+            // 一般方法
+            speak() {
+                // speak 方法放在了哪裡？ -- 類的原型對象上，供實例使用
+                // 通過 Person 實例調用 speak 時，speak 中的 this 就是 Person 實例
+                console.log(`我叫${this.name}，我年齡是${this.age}`);
+            }
+        }
+        // 創建一個 Student 類，繼承於 Person 類
+        class Student extends Person {
+            constructor(name, age, grade) {
+                super(name, age)
+                this.grade = grade;
+                this.school = "尚硅谷"
+            }
+            // 重寫從父類繼承過來的方法
+            speak() {
+                console.log(`我叫${this.name}，我年齡是${this.age}，我讀的是${this.grade}年級`);
+            }
+            study() {
+                // study 方法放在了哪裡？ -- 類的原型對象上，供實例使用
+                // 通過 Student 實例調用 study 時，study 中的 this 就是 Student 實例
+                console.log(`我很努力的學習`)
+            }
+        }
+        class Car {
+            constructor(name, price) {
+                this.name = name;
+                this.price = price;
+                // this.wheel = 4;
+            }
+            // 類中可以直接賦值語句，如下代碼的含義是：給 Car 的實例對象添加一個屬性，名為 a，值為 1
+            a = 1;
+            wheel = 4;
+        }
+        const c1 = new Car("奔馳c63", 199);
+        const c2 = new Car("寶馬", 299);
+        console.log(c1);
+        console.log(c2);
+        /*
+            const s1 = new Student("小張", 15, "高一");
+            console.log(s1);
+            s1.speak();
+            s1.study();
+        */
+
+        /*
+            // 創建一個 Person 的實例對象
+            const p1 = new Person("tom", 18);
+            const p2 = new Person("jerry", 19);
+
+            console.log(p1);
+            console.log(p2);
+            p1.speak();
+            p2.speak();
+            p1.speak.call({a:1, b:2})
+        */
+    </script>
+</body>
+
+</html>
