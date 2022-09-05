@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>37_引出生命週期</title>
+    <title>38_react生命週期(舊)</title>
 </head>
 
 <body>
@@ -21,47 +21,57 @@
 
     <script type="text/babel">
         // 創建組件
-        // 生命週期回調函數 <=> 生命週期鉤子函數 <=> 生命週期函數 <=> 生命週期鉤子
-        class Life extends React.Component {
-            state = {
-                opacity: 1
+        class Count extends React.Component {
+
+            // 構造器
+            constructor(props) {
+                console.log("Count---constructor")
+                super(props)
+                // 初始化狀態
+                this.state = { count: 0 }
             }
+
+            // 加1按鈕的回調
+            add = () => {
+                // 獲取原狀態
+                const { count } = this.state
+                // 更新狀態
+                this.setState({ count: count + 1 })
+            }
+
+            // 卸載組件按鈕的回調
             death = () => {
-                // 卸載組件
                 ReactDOM.unmountComponentAtNode(document.getElementById("test"))
             }
 
-            // 組件掛載完畢
+            // 組件將要掛載的鉤子
+            componentWillMount() {
+                console.log("Count---componentWillMount")
+            }
+
+            // 組件掛載完畢的鉤子
             componentDidMount() {
-                this.timer = setInterval(() => {
-                    // 獲取原狀態
-                    let { opacity } = this.state;
-                    // 減小 0.1
-                    opacity -= 0.1
-                    if (opacity <= 0) opacity = 1
-                    // 設置新的透明度
-                    this.setState({ opacity });
-                }, 200);
+                console.log("Count---componentDidMount")
             }
 
-            // 組件將要卸載
             componentWillUnmount() {
-                // 清除定時器
-                clearInterval(this.timer);
+                console.log("Count---componentWillUnmount")
             }
 
-            // 初始化渲染，狀態更新之後
             render() {
+                console.log("Count---render")
+                const { count } = this.state
                 return (
                     <div>
-                        <h2 style={{ opacity: this.state.opacity }}>React學不會怎麼辦？</h2>
-                        <button onClick={this.death}>不活了</button>
+                        <h2>當前求和為：{count}</h2>
+                        <button onClick={this.add}>點我+1</button>
+                        <button onClick={this.death}>卸載組件</button>
                     </div>
                 )
             }
         }
         // 渲染組件
-        ReactDOM.render(<Life />, document.getElementById("test"))
+        ReactDOM.render(<Count />, document.getElementById("test"))
     </script>
 </body>
 
