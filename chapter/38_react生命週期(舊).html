@@ -54,8 +54,25 @@
                 console.log("Count---componentDidMount")
             }
 
+            // 組件將要卸載的鉤子
             componentWillUnmount() {
                 console.log("Count---componentWillUnmount")
+            }
+
+            // 控制組件更新的"閥門"
+            shouldComponentUpdate() {
+                console.log("Count---shouldComponentUpdate")
+                return true
+            }
+
+            // 組件將要更新的鉤子
+            componentWillUpdate() {
+                console.log("Count---componentWillUpdate")
+            }
+
+            // 組件更新完畢的鉤子
+            componentDidUpdate() {
+                console.log("Count---componentDidUpdate")
             }
 
             render() {
