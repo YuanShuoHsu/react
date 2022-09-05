@@ -93,8 +93,61 @@
                 )
             }
         }
+
+        class A extends React.Component {
+            // 初始化狀態
+            state = {
+                carName: "奔馳"
+            }
+
+            changeCar = () => {
+                this.setState({ carName: "奧拓" })
+            }
+
+            render() {
+                return (
+                    <div>
+                        <div>我是A組件</div>
+                        <button onClick={this.changeCar}>換車</button>
+                        <B carName={this.state.carName} />
+                    </div>
+
+                )
+            }
+        }
+
+        class B extends React.Component {
+            // 組件將要接收新的 props 的鉤子
+            componentWillReceiveProps(props) {
+                console.log("B---componentWillReceiveProps", props);
+            }
+
+            // 控制組件更新的"閥門"
+            shouldComponentUpdate() {
+                console.log("B---shouldComponentUpdate");
+                return true
+            }
+
+            // 組件將要更新的鉤子
+            componentWillUpdate() {
+                console.log("B---componentWillUpdate");
+            }
+
+            // 組件更新完畢的鉤子
+            componentDidUpdate() {
+                console.log("B---componentDidUpdate");
+            }
+
+            render() {
+                console.log("B---render");
+                return (
+                    <div>我是B組件，接收到的車是：{this.props.carName}</div>
+                )
+            }
+        }
+
         // 渲染組件
-        ReactDOM.render(<Count />, document.getElementById("test"))
+        ReactDOM.render(<A />, document.getElementById("test"))
     </script>
 </body>
 
