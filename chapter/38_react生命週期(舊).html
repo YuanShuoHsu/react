@@ -44,6 +44,11 @@
                 ReactDOM.unmountComponentAtNode(document.getElementById("test"))
             }
 
+            // 強制更新按鈕的回調
+            force = () => {
+                this.forceUpdate();
+            }
+
             // 組件將要掛載的鉤子
             componentWillMount() {
                 console.log("Count---componentWillMount")
@@ -83,6 +88,7 @@
                         <h2>當前求和為：{count}</h2>
                         <button onClick={this.add}>點我+1</button>
                         <button onClick={this.death}>卸載組件</button>
+                        <button onClick={this.force}>不更改任何狀態中的數據，強制更新一下</button>
                     </div>
                 )
             }
