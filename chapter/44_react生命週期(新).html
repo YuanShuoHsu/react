@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>43_react生命週期(新)</title>
+    <title>44_react生命週期(新)</title>
 </head>
 
 <body>
@@ -49,9 +49,16 @@
                 this.forceUpdate();
             }
 
-            // 組件將要掛載的鉤子
-            UNSAFE_componentWillMount() {
-                console.log("Count---componentWillMount")
+            // 若 state 的值在任何時候都取決於 props，那麼可以使用 getDerivedStateFromProps
+            static getDerivedStateFromProps(props, state) {
+                console.log("getDerivedStateFromProps", props, state)
+                return null
+            }
+
+            // 在更新之前獲取快照
+            getSnapshotBeforeUpdate() {
+                console.log("getSnapshotBeforeUpdate")
+                return "atguigu"
             }
 
             // 組件掛載完畢的鉤子
@@ -70,14 +77,9 @@
                 return true
             }
 
-            // 組件將要更新的鉤子
-            UNSAFE_componentWillUpdate() {
-                console.log("Count---componentWillUpdate")
-            }
-
             // 組件更新完畢的鉤子
-            componentDidUpdate() {
-                console.log("Count---componentDidUpdate")
+            componentDidUpdate(preProps, preState, snapshotValue) {
+                console.log("Count---componentDidUpdate", preProps, preState, snapshotValue)
             }
 
             render() {
@@ -94,47 +96,8 @@
             }
         }
 
-        // 父組件 A
-        class A extends React.Component {
-            // 初始化狀態
-            state = {
-                carName: "奔馳"
-            }
-
-            changeCar = () => {
-                this.setState({ carName: "奧拓" })
-            }
-
-            render() {
-                return (
-                    <div>
-                        <div>我是A組件</div>
-                        <button onClick={this.changeCar}>換車</button>
-                        <B carName={this.state.carName} />
-                    </div>
-
-                )
-            }
-        }
-
-        // 子組件 B
-        class B extends React.Component {
-            // 組件將要接收新的 props 的鉤子
-            UNSAFE_componentWillReceiveProps(props) {
-                console.log("B---componentWillReceiveProps", props);
-            }
-
-            render() {
-                console.log("B---render");
-                return (
-                    <div>我是B組件，接收到的車是：{this.props.carName}</div>
-                )
-            }
-        }
-
         // 渲染組件
-        ReactDOM.render(<Count />, document.getElementById("test"))
-        // ReactDOM.render(<A />, document.getElementById("test"))
+        ReactDOM.render(<Count count={199} />, document.getElementById("test"))
     </script>
 </body>
 
