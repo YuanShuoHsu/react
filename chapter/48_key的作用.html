@@ -40,28 +40,91 @@
                 2. 如果結構中還包含輸入類的 DOM：
                     會產生錯誤 DOM 更新 ==> 介面有問題
                 3. 注意：如果不存在對數據的逆序添加、逆序刪除等破壞順序操作
-                    僅用於渲染列表用於展示，使用 index 作為 key 是沒有問題的 
+                    僅用於渲染列表用於展示，使用 index 作為 key 是沒有問題的
+            3. 開發中如何選擇 key？
+                1. 最好使用每條數據的唯一標識作為 key，比如 id、手機號、身份證號、學號等唯一值
+                2. 如果確定只是簡單的展示數據，用 index 也是可以的 
         */
 
+        /*
+            慢動作回放---使用 index 索引值作為 key
+                初始數據：
+                    {id: 1, name: "小張", age: 18},
+                    {id: 2, name: "小李", age: 19},
+                初始的虛擬 DOM：
+                    <li key=0>小張---18 <input type="text" /> </li>
+                    <li key=1>小李---19 <input type="text" /> </li>
+                更新後的數據：
+                    {id: 3, name: "小王", age: 20},
+                    {id: 1, name: "小張", age: 18},
+                    {id: 2, name: "小李", age: 19},
+                更新數據後的虛擬 DOM：
+                    <li key=0>小王---20 <input type="text" /> </li>
+                    <li key=1>小張---18 <input type="text" /> </li>
+                    <li key=2>小李---19 <input type="text" /> </li>
+            
+            --------------------------------------------------
+
+            慢動作回放---使用 id 唯一標識作為 key
+                初始數據：
+                    {id: 1, name: "小張", age: 18},
+                    {id: 2, name: "小李", age: 19},
+                初始的虛擬 DOM：
+                    <li key=1>小張---18 <input type="text" /> </li>
+                    <li key=2>小李---19 <input type="text" /> </li>
+                更新後的數據：
+                    {id: 3, name: "小王", age: 20},
+                    {id: 1, name: "小張", age: 18},
+                    {id: 2, name: "小李", age: 19},
+                更新數據後的虛擬 DOM：
+                    <li key=3>小王---20 <input type="text" /> </li>
+                    <li key=1>小張---18 <input type="text" /> </li>
+                    <li key=2>小李---19 <input type="text" /> </li>
+        */
         class Person extends React.Component {
+
             state = {
-                person: [
+                persons: [
                     { id: 1, name: "小張", age: 18 },
                     { id: 2, name: "小李", age: 19 }
                 ]
             }
+
+            add = () => {
+                const { persons } = this.state;
+                const p = { id: persons.length + 1, name: "小王", age: 20 }
+                this.setState({ persons: [p, ...persons] })
+            }
+
             render() {
                 return (
-                    <ul>
-                        {
-                            this.state.persons.map((personObj)=>{
-
-                            })
-                        }
-                    </ul>
+                    <div>
+                        <h2>展示人員信息</h2>
+                        <button onClick={this.add}>添加一個小王</button>
+                        <h3>使用 index 索引值作為 key</h3>
+                        <ul>
+                            {
+                                this.state.persons.map((personObj, index) => {
+                                    return <li key={index}>{personObj.name}---{personObj.age} <input type="text" /> </li>
+                                })
+                            }
+                        </ul>
+                        <hr />
+                        <hr />
+                        <h3>使用 id (數據的唯一標識)作為 key</h3>
+                        <ul>
+                            {
+                                this.state.persons.map((personObj) => {
+                                    return <li key={personObj.id}>{personObj.name}---{personObj.age} <input type="text" /> </li>
+                                })
+                            }
+                        </ul>
+                    </div>
                 )
             }
         }
+
+        ReactDOM.render(<Person />, document.getElementById("test"))
     </script>
 </body>
 
