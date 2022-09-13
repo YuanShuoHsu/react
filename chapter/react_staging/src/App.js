@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import "./App.css"
 
 export default class App extends Component {
+    // 狀態在哪裡，操作狀態的方法就在哪裡
 
     // 初始化狀態
     state = {
@@ -26,13 +27,26 @@ export default class App extends Component {
         this.setState({ todos: newTodos })
     }
 
+    // updateTodo 用於更新一個 todo 對象
+    updateTodo = (id, done) => {
+        // 獲取狀態中的 todos
+        const { todos } = this.state
+        // 匹配處理數據
+        const newTodos = todos.map((todoObj) => {
+            if (todoObj.id === id) return { ...todoObj, done }
+            else return todoObj
+        })
+
+        this.setState({ todos: newTodos })
+    }
+
     render() {
         const { todos } = this.state
         return (
             <div className="todo-container">
                 <div className="todo-wrap">
                     <Header addTodo={this.addTodo} />
-                    <List todos={todos} />
+                    <List todos={todos} updateTodo={this.updateTodo} />
                     <Footer />
                 </div>
             </div>
