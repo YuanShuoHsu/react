@@ -9,7 +9,9 @@ export default class Search extends Component {
     console.log(keyWord)
     // 發送網路請求
     axios.get(`/api1/search/users?q=${keyWord}`).then(
-      response => { console.log("成功了", response.data) },
+      response => {
+        this.props.saveUsers(response.data.items)
+      },
       error => { console.log("失敗了", error) }
     )
   }
