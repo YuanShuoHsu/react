@@ -1,28 +1,9 @@
 import React, { Component } from 'react'
-import PubSub from "pubsub-js"
 import "./index.css"
 
 export default class List extends Component {
-
-  state = { // 初始化狀態
-    users: [], // users 初始值為數組
-    isFirst: true, // 是否為第一次打開頁面
-    isLoading: false, // 標識是否處於加載中
-    err: "", // 存儲請求相關錯誤信息
-  }
-
-  componentDidMount() {
-    this.token = PubSub.subscribe("atguigu", (_, stateObj) => {
-      this.setState(stateObj)
-    })
-  }
-
-  componentWillUnmount() {
-    PubSub.unsubscribe(this.token)
-  }
-
   render() {
-    const { users, isFirst, isLoading, err } = this.state
+    const { users, isFirst, isLoading, err } = this.props
     return (
       <div className="row">
         {
