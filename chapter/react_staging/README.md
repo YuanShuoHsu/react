@@ -80,3 +80,12 @@
     1. 默認使用的是模糊匹配(簡單記：【輸入的路徑】必須包含要【匹配的路徑】，且順序要一致)
     2. 開啟嚴格匹配：<Route exact={true} path="/about" component={About} />
     3. 嚴格匹配不要隨便開啟，需要再開，有些時候開啟會導致無法繼續匹配二級路由
+
+## 九、Redirect 的使用
+    1. 一般寫在所有路由註冊的最下方，當所有路由都無法匹配時，跳轉到 Redirect 指定的路由
+    2. 具體編碼：
+        <Switch>
+            <Route path="/about" component={About} />
+            <Route path="/home" component={Home} />
+            <Redirect to="/about" />
+        </Switch>
