@@ -66,3 +66,17 @@
     1. NavLink 可以實現路由鏈接的高亮，通過 activeClassName 指定樣式名
     2. 標籤體內容是一個特殊的標籤屬性
     3. 通過 this.props.children 可以獲取標籤體內容
+
+## 六、Switch 的使用
+    1. 通常情況下，path 和 component 是一一對應的關係
+    2. Switch 可以提高路由匹配效率(單一匹配)
+
+## 七、解決多級路徑刷新頁面樣式丟失的問題
+    1. public/index.html 引入樣式時不寫 ./ 寫 / (常用)
+    2. public/index.html 引入樣式時不寫 ./ 寫 %PUBLIC_URL% (常用)
+    3. 使用 HashRouter
+
+## 八、路由的嚴格匹配與模糊匹配
+    1. 默認使用的是模糊匹配(簡單記：【輸入的路徑】必須包含要【匹配的路徑】，且順序要一致)
+    2. 開啟嚴格匹配：<Route exact={true} path="/about" component={About} />
+    3. 嚴格匹配不要隨便開啟，需要再開，有些時候開啟會導致無法繼續匹配二級路由
