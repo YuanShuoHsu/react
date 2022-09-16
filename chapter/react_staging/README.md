@@ -30,3 +30,9 @@
             console.log("請求出錯", error)
         }
 
+## 三、路由的基本使用
+    1. 明確好界面中的導航區、展示區
+    2. 導航區的 a 標籤改為 Link 標籤
+    3. 展示區寫 Route 標籤進行路徑的匹配
+        <Route path="/xxxx" component={Demo}>
+    4. <App> 的最外側包裹一個 <BrowserRouter> 或 <HashRouter>
