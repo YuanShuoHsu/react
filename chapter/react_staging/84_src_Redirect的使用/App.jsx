@@ -35,7 +35,7 @@ export default class App extends Component {
                 <Routes>
                   <Route path="/about" element={<About />} />
                   <Route path="/home" element={<Home />} />
-                  <Route path="/" element={<Navigate replace to="/about" />} />
+                  <Route path="*" element={<Navigate replace to="/about" />} />
                 </Routes>
               </div>
             </div>
