@@ -1,6 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
-import qs from 'qs'
+import { useParams } from 'react-router-dom'
 
 const DetailData = [
     { id: "01", content: "你好，台灣" },
@@ -9,14 +8,8 @@ const DetailData = [
 ]
 
 export default function Details() {
-
     // 接收 params 參數
-    // const { id, title } = useParams();
-
-    // 接收 search 參數
-    const { search } = useLocation();
-    const { id, title } = qs.parse(search.slice(1))
-
+    const { id, title } = useParams();
     const findResult = DetailData.find((detailObj) => {
         return detailObj.id === id
     })
