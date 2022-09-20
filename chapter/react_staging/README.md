@@ -93,3 +93,9 @@
 ## 十、嵌套路由
     1. 註冊子路由時要寫上父路由的 path 值
     2. 路由的匹配是按照註冊路由的順序進行的
+
+## 十一、向路由組件傳遞參數
+    1. parmas 參數
+        路由鏈結(攜帶參數)：<Link to="/demo/test/tom/18">詳情</Link>
+        註冊路由(聲明接收)：<Route path="/demo/test/:name/:age" component={Test} />
+        接收參數：const {id, title} = this.props.match.params
