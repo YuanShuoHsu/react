@@ -105,4 +105,8 @@
         接收參數：this.props.location
         備註：獲取到的 search 是 urlencoded 編碼字符串，需要借助 querystring 解析
     3. state 參數
+        路由鏈接(攜帶參數)：<Link to={{ path: "/demo/test", state: { name: "tom", age: 18 } }}></Link>
+        註冊路由(無需聲明，正常註冊即可)：<Route path="/demo/test" component={ Test } />
+        接收參數：this.props.location.state
+        備註：刷新也可以保留住參數
     
