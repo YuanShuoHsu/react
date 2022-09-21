@@ -116,4 +116,16 @@
         - this.props.history.replace()
         - this.props.history.goBack()
         - this.props.history.goForward()
-        - this.props.history.go()    
+        - this.props.history.go()
+
+## 十三、BrowserRouter與HashRouter的區別
+    1. 底層原理不一樣：
+        BrowserRouter 使用的是 HS 的 history API，不兼容 IE9 及以下版本
+        HashRouter 使用的是 URL 的哈希值
+    2. path 表現形式不一樣
+        BrowserRouter 的路徑中沒有 #，例如：localhost:3000/demo/test
+        HashRouter 的路徑包含 #，例如：local:3000/#/demo/test
+    3. 刷新後對路由 state 參數的影響
+        (1). BrowserRouter 沒有任何影響，因為 state 保存在 history 對象中
+        (2). HashRouter 刷新後會導致路由 state 參數的丟失！
+    4. 備註：HashRouter 可以用於解決一些路徑錯誤相關的問題
