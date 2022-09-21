@@ -109,4 +109,11 @@
         註冊路由(無需聲明，正常註冊即可)：<Route path="/demo/test" component={ Test } />
         接收參數：this.props.location.state
         備註：刷新也可以保留住參數
-    
+
+## 十二、編程式路由導航
+        借助 this.props.history 對象上的 API 對操作路由跳轉、前進、後退
+        - this.props.history.push()
+        - this.props.history.replace()
+        - this.props.history.goBack()
+        - this.props.history.goForward()
+        - this.props.history.go()    
