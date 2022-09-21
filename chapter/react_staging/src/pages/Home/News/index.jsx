@@ -1,13 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
+// import React, { useEffect } from 'react'
+// import { useNavigate } from 'react-router-dom'
 
-export default class News extends Component {
-    render() {
-        return (
-            <ul>
-                <li>news001</li>
-                <li>news002</li>
-                <li>news003</li>
-            </ul>
-        )
-    }
+export default function News() {
+    // const navigate = useNavigate();
+
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         navigate("/home/message")
+    //     }, 2000)
+    // })
+
+    return (
+        <ul>
+            <li>news001</li>
+            <li>news002</li>
+            <li>news003</li>
+        </ul>
+    )
 }
