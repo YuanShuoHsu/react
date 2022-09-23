@@ -89,3 +89,43 @@
             <Route path="/home" component={Home} />
             <Redirect to="/about" />
         </Switch>
+
+## 十、嵌套路由
+    1. 註冊子路由時要寫上父路由的 path 值
+    2. 路由的匹配是按照註冊路由的順序進行的
+
+## 十一、向路由組件傳遞參數
+    1. parmas 參數
+        路由鏈結(攜帶參數)：<Link to="/demo/test/tom/18">詳情</Link>
+        註冊路由(聲明接收)：<Route path="/demo/test/:name/:age" component={ Test } />
+        接收參數：this.props.match.params
+    2. search 參數
+        路由鏈接(攜帶參數)：<Link to="/demo/test?name=tom&age=18">詳情</Link>
+        註冊路由(無需聲明，正常註冊即可)：<Route path="/demo/test" component={ Test } />
+        接收參數：this.props.location
+        備註：獲取到的 search 是 urlencoded 編碼字符串，需要借助 querystring 解析
+    3. state 參數
+        路由鏈接(攜帶參數)：<Link to={{ path: "/demo/test", state: { name: "tom", age: 18 } }}></Link>
+        註冊路由(無需聲明，正常註冊即可)：<Route path="/demo/test" component={ Test } />
+        接收參數：this.props.location.state
+        備註：刷新也可以保留住參數
+
+## 十二、編程式路由導航
+        借助 this.props.history 對象上的 API 對操作路由跳轉、前進、後退
+        - this.props.history.push()
+        - this.props.history.replace()
+        - this.props.history.goBack()
+        - this.props.history.goForward()
+        - this.props.history.go()
+
+## 十三、BrowserRouter與HashRouter的區別
+    1. 底層原理不一樣：
+        BrowserRouter 使用的是 HS 的 history API，不兼容 IE9 及以下版本
+        HashRouter 使用的是 URL 的哈希值
+    2. path 表現形式不一樣
+        BrowserRouter 的路徑中沒有 #，例如：localhost:3000/demo/test
+        HashRouter 的路徑包含 #，例如：local:3000/#/demo/test
+    3. 刷新後對路由 state 參數的影響
+        (1). BrowserRouter 沒有任何影響，因為 state 保存在 history 對象中
+        (2). HashRouter 刷新後會導致路由 state 參數的丟失！
+    4. 備註：HashRouter 可以用於解決一些路徑錯誤相關的問題

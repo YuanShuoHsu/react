@@ -23,8 +23,8 @@ export default class App extends Component {
               <a className="list-group-item active" href="./home.html">Home</a> */}
 
               {/* 在 React 中靠路由鏈接實現切換組件--編寫路由鏈接 */}
-              <MyNavLink to="about">About</MyNavLink>
-              <MyNavLink to="home">Home</MyNavLink>
+              <MyNavLink replace to="about">About</MyNavLink>
+              <MyNavLink replace to="home/*">Home</MyNavLink>
 
             </div>
           </div>
@@ -33,9 +33,9 @@ export default class App extends Component {
               <div className="panel-body">
                 {/* 註冊路由 */}
                 <Routes>
-                  <Route path="about" element={<About />} />
-                  <Route path="home" element={<Home />} />
-                  <Route path="*" element={<Navigate replace to="about" />} />
+                    <Route path="about" element={<About />} />
+                    <Route path="home/*" element={<Home />} />
+                    <Route path="*" element={<Navigate replace to="about" />} />
                 </Routes>
               </div>
             </div>
