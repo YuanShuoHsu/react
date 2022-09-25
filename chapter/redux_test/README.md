@@ -38,4 +38,5 @@
             connect(mapStateToProps, mapDispatchToProps)(UI 組件)
             - mapStateToProps：映射狀態，返回值是一個對象
             - mapDispatchToProps：映射操作狀態的方法，返回值是一個對象
-        3). 備註：容器組件中的 store 是靠 props 傳進去的，而不是在容器組件中直接引入
+        3). 備註1：容器組件中的 store 是靠 props 傳進去的，而不是在容器組件中直接引入
+        4). 備註2：mapDispatchToProps，也可以是一個對象
