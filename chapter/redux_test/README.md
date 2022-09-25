@@ -1,10 +1,9 @@
 ## 1. 求和案例_redux精簡版
     (1). 去除 Count 組件自身的狀態
     (2). src下建立：
-        - src
-            - redux
-                - store.js
-                    - count_reducer.js
+        - redux
+            - store.js
+                - count_reducer.js
     (3). store.js：
         1). 引入 redux 中的 createStore 函數，創建一個 store
         2). createStore 調用時要傳入一個為其服務的 reducer
@@ -12,6 +11,13 @@
     (4). count_reducer.js
         1). reducer 的本質是一個函數，接收：preState, action，返回加工後的狀態
         2). reducer 的兩個作用：初始化狀態、加工狀態
-        3). reducer 被第一次調用時，是 store 自動觸發的，傳遞的 preState 是 undefined
-    (5). 在 index.js 中檢測 store 中狀態的改變，一旦發生改變重新渲染 <App/>
+        3). reducer 被第一次調用時，是 store 自動觸發的，
+            傳遞的 preState 是 undefined
+            傳遞的 action 是 :{ type: '@@REDUX/INIT_a.2.b.4' }
+    (5). 在 index.js 中監測 store 中狀態的改變，一旦發生改變重新渲染 <App/>
         備註：redux 只負責狀態管理，至於狀態的改變驅動者頁面的展示，要靠我們自己寫
+
+## 2. 求和案例_redux完整版
+    新增文件：
+        1. count_action.js 專門用於創建 action 對象
+        2. constant.js 放置容易寫錯的 type 值
