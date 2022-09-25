@@ -30,3 +30,12 @@
         2). 創建 action 函數不再返回一般對象，而是一個函數，該函數中寫異步任務
         3). 異步任務有結果後，分發一個同步的 action 去真正操作數據
     (4). 備註：異步 action 不是必須要寫的，完全可以自己等待異步任務的結果了再去分發同步 action
+
+## 4. 求和案例_react-redux基本使用
+    (1). 明確兩個概念：
+        1). UI 組件：不能使用任何 redux 的 api，只負責頁面的呈現、交互等
+        2). 如何創建一個容器組件 -- 靠 react-redux 的 connect 函數
+            connect(mapStateToProps, mapDispatchToProps)(UI 組件)
+            - mapStateToProps：映射狀態，返回值是一個對象
+            - mapDispatchToProps：映射操作狀態的方法，返回值是一個對象
+        3). 備註：容器組件中的 store 是靠 props 傳進去的，而不是在容器組件中直接引入
