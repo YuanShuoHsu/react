@@ -60,3 +60,9 @@
     (2). 為 Person 組件編寫：reducer、action，配置 constant 常量
     (3). 重點：Person 的 reducer 和 Count 的 Reducer 要使用 combineReducers 進行合併，合併後的總狀態是一個對象！
     (4). 交給 store 的是總 reducers，最後注意在組件中取出狀態的時候，記得"取到位"
+
+## 7. 求和案例_react-redux開發者工具的使用
+    (1). yarn add redux-devtools-extension
+    (2). store 中進行配置
+        import { composeWithDevTools } from "redux-devtools-extension"
+        const store = createStore(allReducer, composeWithDevTools(applyMiddleware(thunk)))
