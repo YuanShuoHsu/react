@@ -5,7 +5,7 @@ import {
     createIncrementAction,
     createDecrementAction,
     createIncrementAsyncAction
-} from "../../redux/actions/count"
+} from "../../redux/count_action"
 
 // 引入 connect 用於連接 UI 組件與 redux
 import { connect } from "react-redux"
@@ -44,8 +44,7 @@ class Count extends Component {
         // console.log("UI組件接收到的props是", this.props)
         return (
             <div>
-                <h2>我是Count組件</h2>
-                <h4>當前求和為：{this.props.count}，下方組件總人數為：{this.props.renshu}</h4>
+                <h1>當前求和為：{this.props.count}</h1>
                 <select ref={c => this.selectNumber = c}>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -62,10 +61,16 @@ class Count extends Component {
 
 // 創建 connect()() 創建並暴露一個 Count 的容器組件 
 export default connect(
-    state => ({
-        count: state.he,
-        renshu: state.rens.length
-    }),
+    state => ({ count: state }),
+
+    // mapDispatchToProps 的一般寫法
+    /* dispatch => ({
+        jia: number => dispatch(createIncrementAction(number)),
+        jian: number => dispatch(createDecrementAction(number)),
+        jiaAsync: (number, time) => dispatch(createIncrementAsyncAction(number, time)),
+    }) */
+
+    // mapDispatchToProps 的簡寫
     {
         jia: createIncrementAction,
         jian: createDecrementAction,

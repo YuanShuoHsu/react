@@ -40,3 +40,23 @@
             - mapDispatchToProps：映射操作狀態的方法，返回值是一個對象
         3). 備註1：容器組件中的 store 是靠 props 傳進去的，而不是在容器組件中直接引入
         4). 備註2：mapDispatchToProps，也可以是一個對象
+
+## 5. 求和案例_react-redux優化
+    (1). 容器組件和 UI 組件整合成一個文件
+    (2). 無需自己給容器組件傳遞 store. 給 <App/> 包裹一個 <Provider store={store}> 即可
+    (3). 使用了 react-redux 後也不用再自己檢測 redux 中狀態的改變了，容器組件可以自動完成這個工作
+    (4). mapDispatchToProps 也可以簡單的寫成一個對象
+    (5). 一個組件要和 redux "打交道" 要經過哪幾步？
+        (1). 定義好 UI 組件 -- 不暴露
+        (2). 引入 connect 生成一個容器組件，並暴露，寫法如下：
+            connect(
+                state => ({ key: value}), // 映射狀態
+                { key: xxxxxAction } // 映射操作狀態的方法
+            )(UI 組件)
+        (3). 在 UI 組件中通過 this.props.xxxxx 讀取和操作狀態
+
+## 6.求和案例_react-redux數據共享版
+    (1). 定義一個 Person 組件，和 Count 組件通過 redux 共享數據
+    (2). 為 Person 組件編寫：reducer、action，配置 constant 常量
+    (3). 重點：Person 的 reducer 和 Count 的 Reducer 要使用 combineReducers 進行合併，合併後的總狀態是一個對象！
+    (4). 交給 store 的是總 reducers，最後注意在組件中取出狀態的時候，記得"取到位"
