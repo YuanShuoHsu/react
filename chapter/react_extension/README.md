@@ -53,46 +53,46 @@
 #### 1. React Hook/Hooks是什麼?
 
 ```
-(1). Hook是React 16.8.0版本增加的新特性/新語法
+(1). Hook 是 React 16.8.0 版本增加的新特性 / 新語法
 (2). 可以讓你在函數組件中使用 state 以及其他的 React 特性
 ```
 
 #### 2. 三個常用的Hook
 
 ```
-(1). State Hook: React.useState()
-(2). Effect Hook: React.useEffect()
-(3). Ref Hook: React.useRef()
+(1). State Hook：React.useState()
+(2). Effect Hook：React.useEffect()
+(3). Ref Hook：React.useRef()
 ```
 
 #### 3. State Hook
 
 ```
-(1). State Hook讓函數組件也可以有state狀態, 並進行狀態數據的讀寫操作
+(1). State Hook 讓函數組件也可以有 state 狀態，並進行狀態數據的讀寫操作
 (2). 語法: const [xxx, setXxx] = React.useState(initValue)  
-(3). useState()說明:
-        參數: 第一次初始化指定的值在內部作緩存
-        返回值: 包含2個元素的數組, 第1個為內部當前狀態值, 第2個為更新狀態值的函數
-(4). setXxx()2種寫法:
-        setXxx(newValue): 參數為非函數值, 直接指定新的狀態值, 內部用其覆蓋原來的狀態值
-        setXxx(value => newValue): 參數為函數, 接收原本的狀態值, 返回新的狀態值, 內部用其覆蓋原來的狀態值
+(3). useState() 說明：
+        參數：第一次初始化指定的值在內部作緩存
+        返回值：包含2個元素的數組，第1個為內部當前狀態值，第2個為更新狀態值的函數
+(4). setXxx() 2種寫法：
+        setXxx(newValue)：參數為非函數值，直接指定新的狀態值，內部用其覆蓋原來的狀態值
+        setXxx(value => newValue)：參數為函數，接收原本的狀態值，返回新的狀態值，內部用其覆蓋原來的狀態值
 ```
 
 #### 4. Effect Hook
 
 ```
 (1). Effect Hook 可以讓你在函數組件中執行副作用操作(用於模擬類組件中的生命週期鉤子)
-(2). React中的副作用操作:
-        發ajax請求數據獲取
+(2). React 中的副作用操作：
+        發 ajax 請求數據獲取
         設置訂閱 / 啟動定時器
-        手動更改真實DOM
-(3). 語法和說明: 
+        手動更改真實 DOM
+(3). 語法和說明：
         useEffect(() => { 
           // 在此可以執行任何帶副作用操作
           return () => { // 在組件卸載前執行
             // 在此做一些收尾工作, 比如清除定時器/取消訂閱等
           }
-        }, [stateValue]) // 如果指定的是[], 回調函數只會在第一次render()後執行
+        }, [stateValue]) // 如果指定的是[], 回調函數只會在第一次 render() 後執行
     
 (4). 可以把 useEffect Hook 看做如下三個函數的組合
         componentDidMount()
@@ -103,9 +103,9 @@
 #### 5. Ref Hook
 
 ```
-(1). Ref Hook可以在函數組件中存儲/查找組件內的標籤或任意其它數據
-(2). 語法: const refContainer = useRef()
-(3). 作用:保存標籤對象,功能與React.createRef()一樣
+(1). Ref Hook 可以在函數組件中存儲 / 查找組件內的標籤或任意其它數據
+(2). 語法：const refContainer = useRef()
+(3). 作用：保存標籤對象，功能與 React.createRef() 一樣
 ```
 
 
@@ -118,7 +118,7 @@
 
 ### 使用
 
-	<Fragment><Fragment>
+	<Fragment></Fragment>
 	<></>
 
 ### 作用
@@ -164,7 +164,7 @@
 
 ### 注意
 
-	在應用開發中一般不用context, 一般都用它的封裝react插件
+	在應用開發中一般不用 context，一般都用它的封裝 react 插件
 
 
 
