@@ -197,7 +197,7 @@
 		PureComponent 重寫了 shouldComponentUpdate()，只有 state 或 props 數據有變化才返回 true
 		注意: 
 			只是進行 state 和 props 數據的淺比較，如果只是數據對象內部數據變了，返回 false  
-			不要直接修改state數據，而是要產生新數據
+			不要直接修改 state 數據，而是要產生新數據
 	項目中一般使用 PureComponent 來優化
 
 
