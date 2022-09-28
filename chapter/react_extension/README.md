@@ -133,33 +133,33 @@
 
 ### 理解
 
-> 一種組件間通信方式, 常用於【祖組件】與【後代組件】間通信
+> 一種組件間通信方式，常用於【祖組件】與【後代組件】間通信
 
 ### 使用
 
 ```js
-1) 創建Context容器對象：
+1) 創建 Context 容器對象：
 	const XxxContext = React.createContext()  
 	
-2) 渲染子組時，外麵包裹xxxContext.Provider, 通過value屬性給後代組件傳遞數據：
+2) 渲染子組時，外麵包裹 xxxContext.Provider，通過 value 屬性給後代組件傳遞數據：
 	<xxxContext.Provider value={數據}>
 		子組件
     </xxxContext.Provider>
     
 3) 後代組件讀取數據：
 
-	//第一種方式:僅適用於類組件 
-	  static contextType = xxxContext  // 聲明接收context
-	  this.context // 讀取context中的value數據
+	// 第一種方式：僅適用於類組件 
+	static contextType = xxxContext  // 聲明接收 context
+	this.context // 讀取 context 中的 value 數據
 	  
-	//第二種方式: 函數組件與類組件都可以
-	  <xxxContext.Consumer>
+	// 第二種方式：函數組件與類組件都可以
+	<xxxContext.Consumer>
 	    {
-	      value => ( // value就是context中的value數據
-	        要顯示的內容
-	      )
+	      	value => ( // value 就是 context 中的 value 數據
+	        	要顯示的內容
+	      	)
 	    }
-	  </xxxContext.Consumer>
+	</xxxContext.Consumer>
 ```
 
 ### 注意
@@ -175,30 +175,30 @@
 
 ### Component的2個問題 
 
-> 1. 只要執行setState(),即使不改變狀態數據, 組件也會重新render() ==> 效率低
+> 1. 只要執行 setState()，即使不改變狀態數據，組件也會重新 render() ==> 效率低
 >
-> 2. 只當前組件重新render(), 就會自動重新render子組件，縱使子組件沒有用到父組件的任何數據 ==> 效率低
+> 2. 只當前組件重新 render()，就會自動重新 render 子組件，縱使子組件沒有用到父組件的任何數據 ==> 效率低
 
 ### 效率高的做法
 
->  只有當組件的state或props數據發生改變時才重新render()
+>  只有當組件的 state 或 props 數據發生改變時才重新 render()
 
 ### 原因
 
->  Component中的shouldComponentUpdate()總是返回true
+>  Component 中的 shouldComponentUpdate() 總是返回 true
 
 ### 解決
 
-	辦法1: 
-		重寫shouldComponentUpdate()方法
-		比較新舊state或props數據, 如果有變化才返回true, 如果沒有返回false
-	辦法2:  
-		使用PureComponent
-		PureComponent重寫了shouldComponentUpdate(), 只有state或props數據有變化才返回true
+	辦法1：
+		重寫 shouldComponentUpdate() 方法
+		比較新舊 state 或 props 數據, 如果有變化才返回 true，如果沒有返回 false
+	辦法2：
+		使用 PureComponent
+		PureComponent 重寫了 shouldComponentUpdate()，只有 state 或 props 數據有變化才返回 true
 		注意: 
-			只是進行state和props數據的淺比較, 如果只是數據對象內部數據變了, 返回false  
-			不要直接修改state數據, 而是要產生新數據
-	項目中一般使用PureComponent來優化
+			只是進行 state 和 props 數據的淺比較，如果只是數據對象內部數據變了，返回 false  
+			不要直接修改state數據，而是要產生新數據
+	項目中一般使用 PureComponent 來優化
 
 
 
@@ -209,11 +209,11 @@
 
 ### 如何向組件內部動態傳入帶內容的結構(標籤)?
 
-	Vue中: 
-		使用slot技術, 也就是通過組件標籤體傳入結構  <A><B/></A>
-	React中:
-		使用children props: 通過組件標籤體傳入結構
-		使用render props: 通過組件標籤屬性傳入結構,而且可以攜帶數據，一般用render函數屬性
+	Vue 中：
+		使用 slot 技術，也就是通過組件標籤體傳入結構  <A><B/></A>
+	React 中：
+		使用 children props：通過組件標籤體傳入結構
+		使用 render props：通過組件標籤屬性傳入結構，而且可以攜帶數據，一般用 render 函數屬性
 
 ### children props
 
@@ -221,13 +221,13 @@
 	  <B>xxxx</B>
 	</A>
 	{this.props.children}
-	問題: 如果B組件需要A組件內的數據, ==> 做不到 
+	問題：如果 B 組件需要 A 組件內的數據 ==> 做不到 
 
 ### render props
 
 	<A render={(data) => <C data={data}></C>}></A>
-	A組件: {this.props.render(內部state數據)}
-	C組件: 讀取A組件傳入的數據顯示 {this.props.data} 
+	A 組件：{ this.props.render(內部state數據) }
+	C 組件：讀取 A 組件傳入的數據顯示 { this.props.data } 
 
 
 
