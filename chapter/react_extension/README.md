@@ -245,7 +245,7 @@
 
 ##### 使用方式：
 
-getDerivedStateFromError配合componentDidCatch
+getDerivedStateFromError 配合 componentDidCatch
 
 ```js
 // 生命週期函數，一旦後台組件報錯，就會觸發
@@ -269,19 +269,19 @@ componentDidCatch(error, info) {
 #### 組件間的關係：
 
 - 父子組件
-- 兄弟組件（非嵌套組件）
-- 祖孫組件（跨級組件）
+- 兄弟組件(非嵌套組件)
+- 祖孫組件(跨級組件)
 
 #### 幾種通信方式：
 
 		1.props：
-			(1).children props
-			(2).render props
+			(1). children props
+			(2). render props
 		2.消息訂閱-發布：
-			pubs-sub、event等等
+			pubs-sub、event 等等
 		3.集中式管理：
-			redux、dva等等
-		4.conText:
+			redux、dva 等等
+		4.conText：
 			生產者-消費者模式
 
 #### 比較好的搭配方式：
